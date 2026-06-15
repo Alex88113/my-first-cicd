@@ -1,0 +1,22 @@
+name: CI for project # title a pipeline
+
+on: # Here we specify when to launch a workflow
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs: # tasks to complete section
+  hello-world: # title a task
+    runs-on: ubuntu-latest
+
+    # steps to follow
+    steps:
+     - name: Checkout code # what is a string?
+       uses: actions/checkout@v3 # cloning my repository into a virtual machine
+
+     - name: Say Hello
+       run: echo "Hello, Github Actions! this is my first workflow!" # command a input text jn console
+
+     - name: Show date
+       run: date

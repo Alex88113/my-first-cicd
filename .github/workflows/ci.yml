@@ -1,23 +1,21 @@
-name: CI/CD for statis WebSite # title a pipeline
+name: CI/CD for tests
 
-on: # Here we specify when to launch a workflow
+on:
   push:
     branches: [ main ]
 
-jobs: # tasks to complete section
-  hello-world: # title a task
-    runs-on: ubuntu-latest
+jobs:
+  test:
+    runs-on: ubuntu-laster
 
-    # steps to follow
     steps:
-     - name: Checkout code # what is a string?
-       uses: actions/checkout@v3 # cloning my repository into a virtual machine
+    - name: Checkout code
+      uses: actions/checkout@v3
 
-     - name: Deploy to Github Pages
-       uses: peaceiris/actions-gh-pages@v3
-       with:
-         github_token: ${{ secrets.GITHUB_TOKEN }}
-         publish_di: ./
+    - name: Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.12'
 
-     - name: Show date
-       run: date
+    - name: Run tests
+      run: python test.py
