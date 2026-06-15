@@ -27,4 +27,5 @@ jobs:
         uv pip install -r requirements-test.txt
 
     - name: Run tests
-      run: uv run pytest test.py
+      run: uv run pytest tes
+
