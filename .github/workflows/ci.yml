@@ -1,21 +1,23 @@
-name: CI for project
+name: CI/CD for statis WebSite # title a pipeline
 
-on:
+on: # Here we specify when to launch a workflow
   push:
     branches: [ main ]
-  pull_request:
-    branches: [ main ]
 
-jobs:
-  hello-world:
+jobs: # tasks to complete section
+  hello-world: # title a task
     runs-on: ubuntu-latest
 
+    # steps to follow
     steps:
-     - name: Checkout code
-       uses: actions/checkout@v3
+     - name: Checkout code # what is a string?
+       uses: actions/checkout@v3 # cloning my repository into a virtual machine
 
-     - name: Say Hello
-       run: echo "Hello, Github Actions! this is my first workflow!"
+     - name: Deploy to Github Pages
+       uses: peaceiris/actions-gh-pages@v3
+       with:
+         github_token: ${{ secrets.GITHUB_TOKEN }}
+         publish_di: ./
 
      - name: Show date
        run: date
