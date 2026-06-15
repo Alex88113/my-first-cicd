@@ -18,14 +18,18 @@ jobs:
         python-version: '3.12'
 
     - name: Install uv
-      run: |
-        curl -LsSf https://astral.sh/uv/install.sh | sh
-        echo "$HOME/.cargo/bin" >> $GITHUB_PATH
-
+      uses: astral-sh/setup-uv@v5
+      with:
+        version: 'latest'
+        enable-cache: true
+        
+    - name: Create virtual environment
+      run: uv venv
+      
     - name: Install dependencies with uv
       run: |
         uv pip install -r requirements-test.txt
 
     - name: Run tests
-      run: uv run pytest tes
+      run: uv run pytest -v
 
